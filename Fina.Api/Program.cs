@@ -1,19 +1,20 @@
-using Fina.Api.Data;
-using Fina.Api.Handlers;
-using Fina.Core.Handlers;
-using Microsoft.EntityFrameworkCore;
+using Fina.Api;
+using Fina.Api.Common.Api;
+using Fina.Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
-
-const string connectionString =
-    "server=Muri;Database=fina;User ID=appuser;Password=appuser.123*;Trusted_Connection=False;TrustServerCertificate=True;";
-
-builder.Services.AddDbContext<AppDbContext>(
-    x => x.UseSqlServer(connectionString));
-
-builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
-builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
+//Deve ser nessa ordem para evitar erros
+builder.AddConfiguration();
+builder.AddDataContexts();
+builder.AddCrossOrigin();
+builder.AddDocumentation();
+builder.AddServices();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
+
+app.UseCors(ApiConfiguration.CorsPolicyName);
+app.MapEndpoints();
 
 app.Run();
