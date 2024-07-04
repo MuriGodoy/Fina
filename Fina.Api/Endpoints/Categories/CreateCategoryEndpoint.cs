@@ -20,6 +20,7 @@ public class CreateCategoryEndpoint : IEndpoint
         ICategoryHandler handler,
         CreateCategoryRequest request)
     {
+        request.UserId = ApiConfiguration.UserId;
         var response = await handler.CreateAsync(request);
         if (response.IsSuccess)
         {
