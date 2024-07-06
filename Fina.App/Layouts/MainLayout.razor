@@ -1,16 +1,17 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<MudThemeProvider IsDarkMode="true"/> <!-- Precisa apenas desse -->
+<MudDialogProvider/> <!-- Permite que abramos popups(modais) na tela -->
+<MudSnackbarProvider/> <!-- Notificações que aparecem na tela -->
+<!-- Caso queira utilizar essas duas funcionalidades, ambos precisam estar aqui -->
 
-        <article class="content px-4">
+<MudLayout> <!-- E desse comando para funcionar -->
+    <MudAppBar>
+        Fina
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer>
             @Body
-        </article>
-    </main>
-</div>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
