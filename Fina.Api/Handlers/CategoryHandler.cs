@@ -11,6 +11,8 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
 {
     public async Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
     {
+        /* Adicionando Delay para simular uso e utilizar o IsBusy do front */
+        await Task.Delay(5000);
         var category = new Category
         {
             UserId = request.UserId,
