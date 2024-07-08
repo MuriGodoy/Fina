@@ -9,7 +9,7 @@ public class UpdateTransactionRequest : Request
     [Required(ErrorMessage = "Título inválido")]
     public string Title { get; set; } = string.Empty;
     [Required(ErrorMessage = "Tipo inválido")]
-    public ETransacationType Type { get; set; } = ETransacationType.Withdraw;
+    public ETransactionType Type { get; set; } = ETransactionType.Withdraw;
     [Required(ErrorMessage = "Valor inválido")]
     public decimal Amount { get; set; }
     [Required(ErrorMessage = "Categoria inválida")]

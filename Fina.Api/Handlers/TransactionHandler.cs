@@ -13,7 +13,7 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
 {
     public async Task<Response<Transaction?>> CreateAsync(CreateTransactionRequest request)
     {
-        if(request is {Type: ETransacationType.Withdraw, Amount: >= 0 })
+        if(request is {Type: ETransactionType.Withdraw, Amount: >= 0 })
         {
             request.Amount *= -1;
         }
@@ -115,7 +115,7 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
     {
         try
         {
-            if (request is { Type: ETransacationType.Withdraw, Amount: >= 0 })
+            if (request is { Type: ETransactionType.Withdraw, Amount: >= 0 })
             {
                 request.Amount *= -1;
             }
